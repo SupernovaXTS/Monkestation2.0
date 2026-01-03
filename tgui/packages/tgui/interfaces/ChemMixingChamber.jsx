@@ -41,7 +41,7 @@ export const ChemMixingChamber = (props) => {
                       value={round(targetTemp)}
                       minValue={0}
                       maxValue={1000}
-                      onDrag={(e, value) =>
+                      onChange={(value) =>
                         act('temperature', {
                           target: value,
                         })
@@ -98,7 +98,7 @@ export const ChemMixingChamber = (props) => {
                         fluid
                         value=""
                         placeholder="Reagent Name"
-                        onInput={(e, value) => setReagentName(value)}
+                        onChange={(value) => setReagentName(value)}
                       />
                     </Stack.Item>
                     <Stack.Item>
@@ -109,7 +109,7 @@ export const ChemMixingChamber = (props) => {
                         step={1}
                         stepPixelSize={3}
                         width="39px"
-                        onDrag={(e, value) => setReagentQuantity(value)}
+                        onChange={(value) => setReagentQuantity(value)}
                       />
                       <Box inline mr={1} />
                     </Stack.Item>

@@ -26,7 +26,7 @@ const FilterIntegerEntry = (props) => {
       maxValue={500}
       stepPixelSize={5}
       width="39px"
-      onDrag={(e, value) =>
+      onChange={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
@@ -52,7 +52,7 @@ const FilterFloatEntry = (props) => {
         step={step}
         format={(value) => toFixed(value, numberOfDecimalDigits(step))}
         width="80px"
-        onDrag={(e, value) =>
+        onChange={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {
@@ -69,7 +69,7 @@ const FilterFloatEntry = (props) => {
         step={0.001}
         format={(value) => toFixed(value, 4)}
         width="70px"
-        onChange={(e, value) => setStep(value)}
+        onChange={(value) => setStep(value)}
       />
     </>
   );
@@ -83,7 +83,7 @@ const FilterTextEntry = (props) => {
     <Input
       value={value}
       width="250px"
-      onInput={(e, value) =>
+      onChange={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
@@ -112,7 +112,7 @@ const FilterColorEntry = (props) => {
       <Input
         value={value}
         width="90px"
-        onInput={(e, value) =>
+        onChange={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {
@@ -228,7 +228,7 @@ const FilterEntry = (props) => {
             value={priority}
             stepPixelSize={10}
             width="60px"
-            onChange={(e, value) =>
+            onChange={(value) =>
               act('change_priority', {
                 name: name,
                 new_priority: value,
@@ -301,7 +301,7 @@ export const Filteriffic = (props) => {
                 <Input
                   value={massApplyPath}
                   width="100px"
-                  onInput={(e, value) => setMassApplyPath(value)}
+                  onChange={(value) => setMassApplyPath(value)}
                 />
                 <Button.Confirm
                   content="Apply"
