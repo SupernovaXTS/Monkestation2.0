@@ -675,14 +675,11 @@
 
 
 /obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon, mob/user)
-	if (istype(weapon, /obj/item/disk/nuclear) && !weapon.fake)
+	if (istype(weapon, /obj/item/disk/nuclear))
 		user.visible_message(span_notice("[user] swipes the [weapon] in the lawbringer's authenticator"))
 		owner_dna = null
 		update_id(user)
 		return TRUE
-	else
-		say("Authentication failure; disk not recognised.")
-		return FALSE
 	return ..()
 
 /obj/item/gun/energy/e_gun/lawbringer/attack_self(mob/living/user as mob)
