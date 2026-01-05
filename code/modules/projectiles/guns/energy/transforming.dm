@@ -675,14 +675,14 @@
 
 
 /obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon, mob/user)
-	if (istype(weapon, /obj/item/disk/nuclear))
-		if (weapon.fake)
-			say("Authentication failure; disk not recognised.")
-			return FALSE
+	if (istype(weapon, /obj/item/disk/nuclear) && !weapon.fake)
 		user.visible_message(span_notice("[user] swipes the [weapon] in the lawbringer's authenticator"))
 		owner_dna = null
 		update_id(user)
 		return TRUE
+	else
+		say("Authentication failure; disk not recognised.")
+		return FALSE
 	return ..()
 
 /obj/item/gun/energy/e_gun/lawbringer/attack_self(mob/living/user as mob)
@@ -845,7 +845,7 @@
 
 /obj/item/firing_pin/lawbringer/pin_auth(mob/living/carbon/user)
 	if(!owner_dna) // If we don't have biometrics registered, register them
-		attack_self(mob/living/carbon/user)
+		attack_self(user)
 
 	if(!iscarbon(user))
 		return FALSE
