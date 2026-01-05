@@ -673,8 +673,12 @@
 	owner_dna = null
 	update_id(user)
 
-/obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon, mob/user)
+
+/obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon as disk, mob/user)
 	if (istype(weapon, /obj/item/disk/nuclear))
+		if (disk.fake)
+			say("Authentication failure; disk not recognised.")
+			return FALSE
 		user.visible_message(span_notice("[user] swipes the [weapon] in the lawbringer's authenticator"))
 		owner_dna = null
 		update_id(user)
@@ -840,6 +844,9 @@
 	owner_dna = user.has_dna()?.unique_enzymes
 
 /obj/item/firing_pin/lawbringer/pin_auth(mob/living/carbon/user)
+	if(!owner_dna) // If we don't have biometrics registered, register them
+		attack_self(mob/living/carbon/user)
+
 	if(!iscarbon(user))
 		return FALSE
 	var/unique_enzymes = user.has_dna()?.unique_enzymes
