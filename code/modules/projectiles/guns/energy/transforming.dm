@@ -674,9 +674,9 @@
 	update_id(user)
 
 
-/obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon as disk, mob/user)
+/obj/item/gun/energy/e_gun/lawbringer/attackby(obj/item/weapon, mob/user)
 	if (istype(weapon, /obj/item/disk/nuclear))
-		if (disk.fake)
+		if (weapon.fake)
 			say("Authentication failure; disk not recognised.")
 			return FALSE
 		user.visible_message(span_notice("[user] swipes the [weapon] in the lawbringer's authenticator"))
